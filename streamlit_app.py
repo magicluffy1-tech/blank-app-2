@@ -7,7 +7,7 @@ import numpy as np
 
 # --- 페이지 설정 ---
 st.set_page_config(
-    page_title="Gems의 스마트 시간표 생성기",
+    page_title="서산명지중 스마트 시간표 생성기",
     page_icon="🛡️",
     layout="wide"
 )
