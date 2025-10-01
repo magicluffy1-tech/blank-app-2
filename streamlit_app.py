@@ -7,8 +7,8 @@ import numpy as np
 
 # --- 페이지 설정 ---
 st.set_page_config(
-    page_title="서산명지중 스마트 시간표 생성기",
-    page_icon="🛡️",
+    page_title="서산명지중 스마트 시간표 생성기", # <--- 제목 변경
+    page_icon="🏫",
     layout="wide"
 )
 
@@ -98,7 +98,7 @@ with st.sidebar:
                     st.warning(f"⚠️ 합계: {current_sum} / {target_hours} 시간 (부족)")
 
 # --- 메인 화면 ---
-st.title("🛡️ Gems의 스마트 시간표 생성기")
+st.title("🏫 서산명지중 스마트 시간표 생성기") # <--- 제목 변경
 st.markdown("학년별 **목표 총 시간**과 과목별 시간의 합계가 일치해야 시간표 생성이 가능합니다.")
 
 if not is_all_input_valid:
@@ -116,23 +116,17 @@ if st.button("시간표 자동 생성 🚀", use_container_width=True, type="pri
             st.subheader("📆 자동 생성 결과")
             st.dataframe(final_timetable, use_container_width=True)
 
-            # --- [신규] CSV 다운로드 버튼 ---
-            # 성공적으로 생성된 경우에만 다운로드 버튼이 보이도록 합니다.
             if not unscheduled:
                 st.success("🎉 모든 과목이 성공적으로 시간표에 배정되었습니다!")
-                
-                # 데이터프레임을 CSV 형식의 문자열로 변환 (한글 깨짐 방지 utf-8-sig)
                 csv_data = final_timetable.to_csv(encoding='utf-8-sig')
-
                 st.download_button(
                     label="📥 CSV 파일로 다운로드",
                     data=csv_data,
-                    file_name='시간표.csv',
+                    file_name='서산명지중_시간표.csv', # <--- 파일 이름 변경
                     mime='text/csv',
                     use_container_width=True
                 )
             
-            # 배정 실패 시 메시지 표시
             if unscheduled:
                 st.error("❗ 다음 과목들은 배정하지 못했습니다. 제약 조건이 너무 많거나 시간이 부족할 수 있습니다.")
                 failed_summary = { f"{g}학년 {s}":0 for g,s in unscheduled }
